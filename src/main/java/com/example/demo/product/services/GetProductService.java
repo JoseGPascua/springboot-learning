@@ -1,6 +1,7 @@
 package com.example.demo.product.services;
 
 import com.example.demo.Query;
+import com.example.demo.exceptions.ProductNotFoundException;
 import com.example.demo.product.ProductRepository;
 import com.example.demo.product.model.Product;
 import com.example.demo.product.model.ProductDTO;
@@ -24,7 +25,6 @@ public class GetProductService implements Query<Integer, ProductDTO> {
             return ResponseEntity.ok(new ProductDTO(product.get()));
         }
 
-        // In the future we need to add an exception when product cannot be found
-        return null;
+        throw new ProductNotFoundException();
     }
 }

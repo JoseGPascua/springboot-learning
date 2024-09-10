@@ -1,6 +1,7 @@
 package com.example.demo.product.services;
 
 import com.example.demo.Command;
+import com.example.demo.exceptions.ProductNotFoundException;
 import com.example.demo.product.ProductRepository;
 import com.example.demo.product.model.Product;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,7 @@ public class DeleteProductService implements Command<Integer, Void> {
             productRepository.deleteById(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
-        // We can create our runtime exception this way or make a class to do that for us
-        throw new RuntimeException("Product not found");
+
+        throw new ProductNotFoundException();
     }
 }
