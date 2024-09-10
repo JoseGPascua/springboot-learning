@@ -1,9 +1,13 @@
 package com.example.demo.product;
 
+import com.example.demo.exceptions.ProductNotFoundException;
+import com.example.demo.product.model.ErrorResponse;
 import com.example.demo.product.model.Product;
 import com.example.demo.product.model.ProductDTO;
 import com.example.demo.product.model.UpdateProductCommand;
 import com.example.demo.product.services.*;
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,5 +64,11 @@ public class ProductController {
     @DeleteMapping("/product/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Integer id) {
         return deleteProductService.execute(id);
+    }
+
+    // Creating a custom error response using ErrorResponse class
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleProductNotFoundException(ProductNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(exception.getMessage()));
     }
 }
