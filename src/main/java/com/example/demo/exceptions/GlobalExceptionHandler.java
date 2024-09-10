@@ -15,5 +15,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(exception.getMessage()));
     }
 
-    // Can add more exceptions to be handled here
+    @ExceptionHandler(ProductNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleProductNotValidException(ProductNotValidException exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(exception.getMessage()));
+    }
 }
