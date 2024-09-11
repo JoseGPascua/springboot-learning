@@ -7,7 +7,6 @@ import com.example.demo.product.model.Product;
 import com.example.demo.product.model.ProductDTO;
 import com.example.demo.product.model.UpdateProductCommand;
 import com.example.demo.product.validators.ProductValidator;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

@@ -1,13 +1,11 @@
 package com.example.demo.product.services;
 
-import ch.qos.logback.core.util.StringUtil;
 import com.example.demo.Command;
 import com.example.demo.exceptions.ErrorMessages;
 import com.example.demo.exceptions.ProductNotValidException;
 import com.example.demo.product.ProductRepository;
 import com.example.demo.product.model.Product;
 import com.example.demo.product.model.ProductDTO;
-import com.example.demo.product.validators.ProductValidator;
 import io.micrometer.common.util.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
