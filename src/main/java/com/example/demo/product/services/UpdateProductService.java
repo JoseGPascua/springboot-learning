@@ -7,6 +7,8 @@ import com.example.demo.product.model.Product;
 import com.example.demo.product.model.ProductDTO;
 import com.example.demo.product.model.UpdateProductCommand;
 import com.example.demo.product.validators.ProductValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,7 @@ import java.util.Optional;
 public class UpdateProductService implements Command<UpdateProductCommand, ProductDTO> {
 
     private final ProductRepository productRepository;
+    private final static Logger logger = LoggerFactory.getLogger(UpdateProductService.class);
 
     public UpdateProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
@@ -28,6 +31,7 @@ public class UpdateProductService implements Command<UpdateProductCommand, Produ
 
     @Override
     public ResponseEntity<ProductDTO> execute(UpdateProductCommand command) {
+        logger.info("Executing: " + getClass());
         Optional<Product> productOptional = productRepository.findById(command.getId());
         if (productOptional.isPresent()) {
             Product product = command.getProduct();

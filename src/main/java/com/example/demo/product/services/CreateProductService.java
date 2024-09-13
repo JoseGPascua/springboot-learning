@@ -7,6 +7,8 @@ import com.example.demo.product.ProductRepository;
 import com.example.demo.product.model.Product;
 import com.example.demo.product.model.ProductDTO;
 import io.micrometer.common.util.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 public class CreateProductService implements Command<Product, ProductDTO> {
 
     private final ProductRepository productRepository;
+    private final static Logger logger = LoggerFactory.getLogger(CreateProductService.class);
 
     // Constructor Inject of ProductRepository allows us to use free methods created by the JpaRepository library
     public CreateProductService(ProductRepository productRepository) {
@@ -30,7 +33,8 @@ public class CreateProductService implements Command<Product, ProductDTO> {
     // by creating an interface and having the execute method become one that must be overridden
     @Override
     public ResponseEntity<ProductDTO> execute(Product product) {
-        //validate before saving
+
+        logger.info("Executing " + getClass());
 
         // ProductValidator.execute(product); can also be used in place of the validateProduct code
 
