@@ -10,6 +10,7 @@ public class CatFactController {
 
     private final CatFactService catFactService;
 
+    // reaches up into the spring container to get the service class
     public CatFactController(CatFactService catFactService) {
         this.catFactService = catFactService;
     }
