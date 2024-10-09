@@ -34,10 +34,9 @@ public class SecurityConfiguration {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)  // allows for POST, PUT, DELETE mappings with authentication
                 .authorizeHttpRequests(authorize -> {
+//                    authorize.anyRequest().permitAll(); this code was used for testing the actuator, need to comment out the next 3 lines if you want to use
                     authorize.requestMatchers("/login").permitAll();
                     authorize.requestMatchers("/createnewuser").permitAll();
-
-                    //must be at the bottom
                     authorize.anyRequest().authenticated();
                 })
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
